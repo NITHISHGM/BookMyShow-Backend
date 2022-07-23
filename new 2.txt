@@ -1,0 +1,34 @@
+create database bms;
+use bms;
+create table users(username  varchar(225),pass varchar(225));
+Insert into users values ('dinu','dinu123');
+select * from users;
+select * from ticket_table;
+SET SQL_SAFE_UPDATES = 0;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+create table ticket_table(
+theatrename varchar(255),
+moviename varchar(255),
+chair int(4), price_chair int(4) ,chairstatus varchar(1), seatrow int(4) ,seatcol int,
+ movie_date varchar(50),
+ 
+ ticketID varchar(255), 
+ 
+Customername varchar(255) null, pincode int (6),
+timing varchar(1)
+);
+
+insert into ticket_table values ('kasi','vikram',12,120,'F',0,0,'2022-07-23',null,null,609110,'M');
+
+select chair,price_chair,chairstatus,seatrow,seatcol,ticketID,Customername 
+from ticket_table
+where timing = 'M' and theatrename = 'kasi' and movie_date = '2022-07-23' and pincode = 609110;
+
+###### chair status
+select chairstatus from ticket_table where timing='M' and Customername='dinu' and theatrename= 'kasi'  and movie_date = '2022-07-23' and pincode = 609110 and chair = 12;
+#####
+if chairstatus ==="F":
+update ticket_table set ticketID = 'XYXZ',Customername='dinu',chairstatus='B'  where timing='M' and theatrename= 'kasi'  and movie_date = '2022-07-23' and pincode = 609110 and chair = 12;
+
+
+update ticket_table set chairstatus ='F' where timing='M' and Customername='dinu' and theatrename= 'kasi'  and movie_date = '2022-07-23' and pincode = 609110 and chair = 12;
